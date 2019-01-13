@@ -15,7 +15,7 @@ const dbConstants = require('../../server/db/dbConstants');
 router.get('/', async (req, res, next) => {
   try {
     const mainDB = await db.initializeMainDB();
-    const finalRes = await mainDB.view(dbConstants.FEED_ID, dbConstants.FEED_VIEW, { ...req.query, include_docs: true, descending: true });
+    const finalRes = await mainDB.viewAsync(dbConstants.FEED_ID, dbConstants.FEED_VIEW, { ...req.query, include_docs: true, descending: true });
     return Helper.handleResponse(req, res, null, finalRes.rows);
   } catch (error) {
     return Helper.handleResponse(req, res, error);
